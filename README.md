@@ -16,7 +16,10 @@ my_matrix = Matrix([1, 2, 3], [4, 5, 6]) # Creating a 3x2 matrix
 
 ## Matrix Operations
 MicroMatrix supports many operations, including all of the standard mathematical operators.
-All operations can be reversed, combined, whatever - although keep in mind that matrices are weird. Some operations may not be possible depending on the dimension and elements of your matrices. In that case, you will see an AssertionError with a description.
+
+All operations can be reversed, combined, whatever - although keep in mind that matrices are weird. Some operations may not be possible depending on the dimension and elements of your matrices. In that case, you will see an AssertionError with a description, such as:
+```AssertionError: Matrix cannot be inverted```
+
 Most supported methods are below, but more can be found in the source code.
 
 ```python
@@ -28,9 +31,6 @@ str(my_matrix)
 
 # Returns the total number of elements in the matrix
 len(my_matrix)
-
-# Multiplies the matrix by -1, returns a new matrix
--my_matrix
 
 # Calculates absolute value of each element, returns a new matrix
 abs(my_matrix)
@@ -47,7 +47,7 @@ my_matrix.transpose()
 # Returns the determinant of my_matrix
 my_matrix.determinant()
 
-# Returns the inverse of my_matrix
+# Returns the inverse of my_matrix (if possible)
 my_matrix.invert()
 
 # Mathematical operation examples
