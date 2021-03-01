@@ -33,7 +33,7 @@ class Dimension:
 
 class Matrix:
     """
-    Generalised for NxN, supports many operations, supports complex numbers
+    Generalised NxN matrix class. Supports many operations, supports complex numbers
 
     Parameters:
         `*rows: array` - Matrix Rows
@@ -44,22 +44,6 @@ class Matrix:
         `M2 = Matrix([0, -2], [10j, 5])`
         `M3 = Matrix([0, 50j, 41], [0, 0, 0], [10j, 0, 10])`
         `M4 = Matrix([5], [-6+2j])`
-
-    Supported Operations:
-        M = instance, N = number
-
-        Addition: M+N, N+M, M+M
-        Subtraction: M-N, N-M, M-M
-        Multiplication: M*N, N*M, M*M
-        Division: M/N, N/M, M/M
-        Absolute Value: abs(M)
-        Transpose: M.transpose()
-        Determinant: M.determinant()
-        Invert: M.invert()
-        Identity: M.identity()
-        Length: len(M)
-        Powers: M**N
-        ...
     """
 
     def __init__(self, *rows: array, precision: int = 5) -> None:
