@@ -7,7 +7,17 @@ The `Matrix` class takes any number of lists as parameters which will form the h
 ```python
 from micromatrix import Matrix
 
-my_matrix = Matrix([1, 2, 3], [4, 5, 6)
+my_matrix = Matrix([1, 2, 3], [4, 5, 6]) # Creating a 3x2 matrix
 
-# do stuff with my_matrix
+# Do stuff with my_matrix...
+```
+
+## Matrix Operations
+MicroMatrix supports many operations, including all of the standard mathematical operators.
+Some examples are below, but more can be found in the source code.
+
+```python
+my_matrix.transpose()
+
+# i actually cba to write more rn
 ```
