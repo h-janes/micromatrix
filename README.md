@@ -1,5 +1,5 @@
 # MicroMatrix
-MicroMatrix is a small Python3 package which adds a generalised `Matrix` class for matrix maths with no external dependancies.
+MicroMatrix is a small Python3 package which adds a generalised `Matrix` class for matrix maths with no external dependencies.
 
 MicroMatrix supports complex numbers; standard arithmetic such as addition, subtraction, absolute value and scalar multiplication; and matrix operations such as transpose, invert, multiplication, division, exponentiation and more.
 
