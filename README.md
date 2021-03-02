@@ -1,7 +1,8 @@
 # MicroMatrix
 MicroMatrix is a small Python3 module which adds a generalised `Matrix` class, supporting many operations with no external dependancies.
 
-**MicroMatrix supports:**
+### MicroMatrix Supports
+
 * Matrices of any size
 * Complex Numbers
 * Addition & Subtraction
