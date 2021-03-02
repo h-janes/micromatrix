@@ -137,7 +137,7 @@ class Matrix:
         return determinant
 
     def invert(self) -> Matrix:
-        """ Returns matrix invert if it exists, else returns None """
+        """ Returns matrix invert if it exists """
         try:
             det = self.determinant()
             rows = self.rows
