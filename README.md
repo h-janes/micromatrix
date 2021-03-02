@@ -1,11 +1,22 @@
 # MicroMatrix
-MicroMatrix is a small Python3 package which adds a generalised `Matrix` class for matrix maths with no external dependencies.
+MicroMatrix is a small Python3 module which adds a generalised `Matrix` class, supporting many operations with no external dependancies.
 
-MicroMatrix supports complex numbers; standard arithmetic such as addition, subtraction, absolute value and scalar multiplication; and matrix operations such as transpose, invert, multiplication, division, exponentiation and more.
+**MicroMatrix supports:**
+* Matrices of any size
+* Complex Numbers
+* Addition & Subtraction
+* Multiplication & Division
+* Exponentiation
+* Transposition
+* Inverse & Determinant
+* Assignment Operators
+* And more!
 
-You can create matrices of any size: `1x1`, `2x4`, `3x3`, or whatever you want.
-The `Matrix` class takes any number of lists as parameters which will form the horizontal rows of the matrix.
+## Usage
 
+1. First, download the `micromatrix` directory and move it into your project. Alternatively, you can copy the contents of `main.py` into your own file.
+2. Import the `Matrix` class from `micromatrix` (or whatever file you have it in).
+3. Create some matrices! You can create matrices of any size: `1x1`, `2x4`, `3x3`, or whatever you want. The `Matrix` class takes any number of lists as parameters which will form the horizontal rows of the matrix.
 ```python
 from micromatrix import Matrix
 
