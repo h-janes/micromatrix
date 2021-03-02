@@ -15,8 +15,11 @@ MicroMatrix is a small Python3 module which adds a generalised `Matrix` class, s
 ## Usage
 
 1. First, download the `micromatrix` directory and move it into your project. Alternatively, you can copy the contents of `main.py` into your own file.
+
 2. Import the `Matrix` class from `micromatrix` (or whatever file you have it in).
+
 3. Create some matrices! You can create matrices of any size: `1x1`, `2x4`, `3x3`, or whatever you want. The `Matrix` class takes any number of lists as parameters which will form the horizontal rows of the matrix.
+
 ```python
 from micromatrix import Matrix
 
