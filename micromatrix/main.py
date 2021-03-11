@@ -22,8 +22,9 @@ class Dimension:
     def __init__(self, width: array, height: array) -> None:
         self.x = len(width)
         self.y = len(height)
+        self.min = min(self.x, self.y)
+        self.max = max(self.x, self.y)
         self.square = self.x == self.y
-        self.area = self.x * self.y
 
     def __eq__(self, other) -> bool:
         if isinstance(other, Dimension) and self.x == other.x and self.y == other.y:
@@ -32,20 +33,6 @@ class Dimension:
 
 
 class Matrix:
-    """
-    Generalised NxN matrix class. Supports many operations, supports complex numbers
-
-    Parameters:
-        `*rows: array` - Matrix Rows
-        `precision: int = 5` - Decimal Output Precision
-
-    Usage Examples:
-        `M1 = Matrix([1, 2, -3], [4, -5, 6])`
-        `M2 = Matrix([0, -2], [10j, 5])`
-        `M3 = Matrix([0, 50j, 41], [0, 0, 0], [10j, 0, 10])`
-        `M4 = Matrix([5], [-6+2j])`
-    """
-
     def __init__(self, *rows: array, precision: int = 5) -> None:
         assert all(isinstance(row, array) for row in rows), error[1]
         assert all(len(row) == len(rows[0]) for row in rows), error[2]
@@ -82,7 +69,7 @@ class Matrix:
     def __str__(self) -> str:
         s = [[str(self.round(i)) for i in row] for row in self.rows]
         lens = [max(map(len, col)) for col in zip(*s)]
-        fmt = "¦ " + "   ".join("{{:{}}}".format(x) for x in lens) + " ¦"
+        fmt = "[ " + "   ".join("{{:{}}}".format(x) for x in lens) + " ]"
         table = [fmt.format(*row) for row in s]
         return "\n".join(table)
 
@@ -113,7 +100,7 @@ class Matrix:
     def identity(self) -> Matrix:
         """ Returns an identity matrix with the same dimensions """
         rows = self.administer(lambda i: 0).rows
-        for i in range(self.dimension.x):
+        for i in range(self.dimension.min):
             rows[i][i] = 1
         return Matrix(*rows)
 
@@ -228,3 +215,4 @@ class Matrix:
 
     def inverse(self):
         return self.invert()
+    
