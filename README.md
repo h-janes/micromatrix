@@ -1,91 +1,62 @@
 # MicroMatrix
 **This is an old unfinished project which I plan to work on soon.**
 
-MicroMatrix is a small Python3 module which adds a generalised `Matrix` class, supporting many operations with no external dependancies.
+MicroMatrix is a small Python module which adds a generalized `Matrix` class, supporting many operations with no external dependencies.
 
-### MicroMatrix Supports
-
+**MicroMatrix Supports:**
 * Matrices of any size
 * Complex Numbers
 * Addition & Subtraction
 * Multiplication & Division
-* Exponentiation
+* Integer Exponentiation
 * Transposition
 * Inverse & Determinant
 * Assignment Operators
 * And more!
 
 ## Usage
+### Installation
+Flask Sitemapper requires Python 3.10 or newer. The latest version can be installed from PyPi with pip as shown below.
+```terminal
+pip install micromatrix
+```
 
-1. First, download the `micromatrix` directory and move it into your project. Alternatively, you can copy the contents of `main.py` into your own file.
-
-2. Import the `Matrix` class from `micromatrix` (or whatever file you have it in).
-
-3. Create some matrices! You can create matrices of any size: `1x1`, `2x4`, `3x3`, or whatever you want. The `Matrix` class takes any number of lists as parameters which will form the horizontal rows of the matrix.
-
+Now you can import the `Matrix` class to use in your code.
 ```python
 from micromatrix import Matrix
 
-my_matrix = Matrix([1, 2, 3], [4, 5, 6]) # Creating a 3x2 matrix
-
-# Do stuff with my_matrix...
+# Creating a 3x2 matrix
+my_matrix = Matrix([1, 2, 3], [4, 5, 6])
 ```
 
-## Matrix Operations
-MicroMatrix supports many operations, including all of the standard mathematical operators.
+### Matrix Operations
+MicroMatrix supports many operations, including the standard Python mathematical operators and common matrix operations. These operations can be combined and used for complex calculations.
 
-All operations can be reversed, combined, whatever - although keep in mind that matrices are weird. Some operations may not be possible depending on the dimension and elements of your matrices. In that case, you will see an AssertionError with a description, such as:
+Keep in mind that some operations may not be possible depending on the dimension and elements of your matrices. In that case, you will see a `ValueError` with a description such as:
 ```terminal
-AssertionError: Matrix cannot be inverted
+ValueError: Operation requires a square matrix
 ```
 
-Most supported methods are below, but more can be found in the source code.
+#### Reversible Operations
+* `Matrix + int | float | complex | Matrix`
+* `Matrix - int | float | complex | Matrix`
+* `Matrix * int | float | complex | Matrix`
+* `Matrix / int | float | complex | Matrix`
+* `Matrix == Any`
+#### Non-Reversible Operations
+* `Matrix ** int`
+* `+ Matrix`
+* `- Matrix`
+* `~ Matrix`
+* `abs(Matrix)`
+* `len(Matrix)`
+* `str(Matrix)`
 
-```python
-# Applies function to all elements in matrix, returns a new matrix
-my_matrix.administer(function)
+#### Properties
+* `Matrix.identity`
+* `Matrix.transpose`
+* `Matrix.determinant`
+* `Matrix.invert`
 
-# Returns a nice multiline padded string representation of the matrix
-str(my_matrix)
-
-# Returns the total number of elements in the matrix
-len(my_matrix)
-
-# Calculates absolute value of each element, returns a new matrix
-abs(my_matrix)
-
-# Returns True if both matrices have same elements, else returns False
-my_matrix == another_matrix
-
-# Returns the identity matrix with the same dimensions as my_matrix
-my_matrix.identity()
-
-# Returns the transpose of my_matrix
-my_matrix.transpose()
-
-# Returns the determinant of my_matrix
-my_matrix.determinant()
-
-# Returns the inverse of my_matrix (if possible)
-my_matrix.invert()
-
-# Mathematical operation examples
-my_matrix + 30
-my_matrix - 16
-2 - my_matrix
-my_matrix + another_matrix
-my_matrix - another_matrix
-my_matrix * 40
-my_matrix * another_matrix
-my_matrix / 3
-6 / my_matrix
-my_matrix / another_matrix
-my_matrix ** -1
-my_matrix ** 4
-
-# Assignment statements can also be used
-my_matrix += 7
-my_matrix -= another_matrix
-my_matrix *= another_matrix
-my_matrix /= 420
-```
+#### Methods
+* `Matrix.administer(function)`
