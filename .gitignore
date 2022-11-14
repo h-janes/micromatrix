@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution
+dist/
+build/
+
+# Testing
+.pytest_cache/
+
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Icon^M
+Thumbs.db
+[Dd]esktop.ini

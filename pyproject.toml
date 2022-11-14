@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "micromatrix"
+version = "1.0.0"
+description = "A small Python module which adds a generalized matrix class, supporting many operations with no external dependencies"
+authors = ["h-janes <dev@hjanes.com>"]
+license = "MIT"
+readme = "README.md"
+keywords = ["python3", "math", "matrix"]
+classifiers=[
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Operating System :: OS Independent",
+]
+packages = [{include = "micromatrix"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.group.dev.dependencies]
+black = "^22.10.0"
+isort = "^5.10.1"
+
+[tool.black]
+line-length = 99
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
