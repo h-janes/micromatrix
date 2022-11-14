@@ -59,6 +59,7 @@ class Matrix(_Matrix):
         return [row[:j] + row[j + 1 :] for row in (m[:i] + m[i + 1 :])]
 
     # Matrix methods
+    @property
     def identity(self) -> _Matrix:
         """Returns an identity matrix with the same dimensions"""
         rows = self.administer(lambda i: 0).rows
@@ -66,10 +67,12 @@ class Matrix(_Matrix):
             rows[i][i] = 1
         return Matrix(*rows)
 
+    @property
     def transpose(self) -> _Matrix:
         """Returns the transposed matrix"""
         return Matrix(*self.columns)
 
+    @property
     def determinant(self, rows: list = None) -> NumberType:
         """Returns the matrix determinant"""
         if not rows:
@@ -86,8 +89,9 @@ class Matrix(_Matrix):
             determinant += ((-1) ** i) * rows[0][i] * self.determinant(minor)
         return determinant
 
+    @property
     def invert(self) -> _Matrix:
-        """Returns matrix inverse if it exists"""
+        """Returns matrix invert if it exists"""
         try:
             det = self.determinant()
             rows = self.rows
@@ -195,16 +199,5 @@ class Matrix(_Matrix):
     def __rtruediv__(self, other: MathType) -> _Matrix:
         return self.invert().__mul__(other)
 
-    # Aliases
-
-    def det(self):
-        return self.determinant()
-
-    def T(self):
-        return self.transpose()
-
     def __invert__(self):
-        return self.invert()
-
-    def inverse(self):
         return self.invert()
