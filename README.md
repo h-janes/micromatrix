@@ -1,7 +1,7 @@
 # MicroMatrix
 **This is an old unfinished project which I plan to work on soon.**
 
-MicroMatrix is a small Python module which adds a generalized `Matrix` class, supporting many operations with no external dependencies.
+MicroMatrix is a lightweight Python module which adds a generalized `Matrix` class, supporting many matrix operations with no external dependencies.
 
 **MicroMatrix Supports:**
 * Matrices of any size
@@ -29,7 +29,7 @@ from micromatrix import Matrix
 my_matrix = Matrix([1, 2, 3], [4, 5, 6])
 ```
 
-### Matrix Operations
+### Supported Operations
 MicroMatrix supports many operations, including the standard Python mathematical operators and common matrix operations. These operations can be combined and used for complex calculations.
 
 Keep in mind that some operations may not be possible depending on the dimension and elements of your matrices. In that case, you will see a `ValueError` with a description such as:
@@ -38,25 +38,25 @@ ValueError: Operation requires a square matrix
 ```
 
 #### Reversible Operations
-* `Matrix + int | float | complex | Matrix`
-* `Matrix - int | float | complex | Matrix`
-* `Matrix * int | float | complex | Matrix`
-* `Matrix / int | float | complex | Matrix`
-* `Matrix == Any`
+* `Matrix + int | float | complex | Matrix -> Matrix`
+* `Matrix - int | float | complex | Matrix -> Matrix`
+* `Matrix * int | float | complex | Matrix -> Matrix`
+* `Matrix / int | float | complex | Matrix -> Matrix`
+* `Matrix == Any -> bool`
 #### Non-Reversible Operations
-* `Matrix ** int`
-* `+ Matrix`
-* `- Matrix`
-* `~ Matrix`
-* `abs(Matrix)`
-* `len(Matrix)`
-* `str(Matrix)`
+* `Matrix ** int -> Matrix`
+* `+ Matrix -> Matrix`
+* `- Matrix -> Matrix`
+* `~ Matrix -> Matrix`
+* `abs(Matrix) -> Matrix`
+* `len(Matrix) -> int`
+* `str(Matrix) -> str`
 
 #### Properties
-* `Matrix.identity`
-* `Matrix.transpose`
-* `Matrix.determinant`
-* `Matrix.invert`
+* `Matrix.identity -> Matrix`
+* `Matrix.transpose -> Matrix`
+* `Matrix.determinant -> int | float | complex`
+* `Matrix.invert -> Matrix`
 
 #### Methods
-* `Matrix.administer(function)`
+* `Matrix.administer(func) -> Matrix` applies func to each value in Matrix

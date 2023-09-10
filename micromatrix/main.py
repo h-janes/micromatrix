@@ -1,3 +1,8 @@
+from __future__ import annotations
+
+from typing import Union
+
+
 class Dimension:
     def __init__(self, x: int, y: int) -> None:
         self.x = x
@@ -21,16 +26,7 @@ class Dimension:
         return False
 
 
-# Types
-class _Matrix:
-    pass
-
-
-NumberType = int | float | complex
-MathType = int | float | complex | _Matrix
-
-
-class Matrix(_Matrix):
+class Matrix:
     def __init__(self, *rows: list, precision: int = 5) -> None:
         if not all(len(row) == len(rows[0]) for row in rows):
             raise ValueError("Matrix rows must all have equal length")
@@ -41,12 +37,12 @@ class Matrix(_Matrix):
         self.precision = precision
 
     # Helper Methods
-    def administer(self, func) -> _Matrix:
+    def administer(self, func) -> Matrix:
         """Applies the given function to all elements in the matrix"""
         rows = [[func(i) for i in row] for row in self.rows]
         return Matrix(*rows)
 
-    def round(self, x: NumberType) -> NumberType:
+    def round(self, x: Union[int, float, complex]) -> Union[int, float, complex]:
         """Rounds any number, including complex"""
         try:
             return round(x, self.precision)
@@ -60,7 +56,12 @@ class Matrix(_Matrix):
 
     # Matrix methods
     @property
-    def identity(self) -> _Matrix:
+    def square(self) -> bool:
+        """Returns True if Matrix is square"""
+        return self.dimension.square
+
+    @property
+    def identity(self) -> Matrix:
         """Returns an identity matrix with the same dimensions"""
         rows = self.administer(lambda i: 0).rows
         for i in range(self.dimension.min):
@@ -68,15 +69,15 @@ class Matrix(_Matrix):
         return Matrix(*rows)
 
     @property
-    def transpose(self) -> _Matrix:
+    def transpose(self) -> Matrix:
         """Returns the transposed matrix"""
         return Matrix(*self.columns)
 
     @property
-    def determinant(self, rows: list = None) -> NumberType:
+    def determinant(self, rows: list = None) -> Union[int, float, complex]:
         """Returns the matrix determinant"""
         if not rows:
-            if not self.dimension.square:
+            if not self.square:
                 raise ValueError("Operation requires a square matrix")
             rows = self.rows
         if len(rows) == 1:
@@ -90,7 +91,7 @@ class Matrix(_Matrix):
         return determinant
 
     @property
-    def invert(self) -> _Matrix:
+    def invert(self) -> Matrix:
         """Returns matrix invert if it exists"""
         try:
             det = self.determinant()
@@ -132,13 +133,13 @@ class Matrix(_Matrix):
             length += len(row)
         return length
 
-    def __pos__(self) -> _Matrix:
+    def __pos__(self) -> Matrix:
         return self
 
-    def __neg__(self) -> _Matrix:
+    def __neg__(self) -> Matrix:
         return self.administer(lambda i: -i)
 
-    def __abs__(self) -> _Matrix:
+    def __abs__(self) -> Matrix:
         return self.administer(lambda i: abs(i))
 
     def __eq__(self, other) -> bool:
@@ -146,25 +147,25 @@ class Matrix(_Matrix):
             return True
         return False
 
-    def __add__(self, other: MathType) -> _Matrix:
-        if isinstance(other, NumberType):
+    def __add__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
+        if isinstance(other, Union[int, float, complex]):
             return self.administer(lambda i: i + other)
         if self.dimension != other.dimension:
             raise ValueError("Operation requires matrices of the same dimension")
         rows = [[a + b for a, b in zip(i, j)] for i, j in zip(self.rows, other.rows)]
         return Matrix(*rows)
 
-    def __radd__(self, other: MathType) -> _Matrix:
+    def __radd__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
         return self.__add__(other)
 
-    def __sub__(self, other: MathType) -> _Matrix:
+    def __sub__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
         return self.__add__(-other)
 
-    def __rsub__(self, other: MathType) -> _Matrix:
+    def __rsub__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
         return (-self).__add__(other)
 
-    def __mul__(self, other: MathType) -> _Matrix:
-        if isinstance(other, NumberType):
+    def __mul__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
+        if isinstance(other, Union[int, float, complex]):
             return self.administer(lambda i: i * other)
         if self.dimension.x != other.dimension.y:
             raise ValueError(
@@ -176,27 +177,27 @@ class Matrix(_Matrix):
         ]
         return Matrix(*rows)
 
-    def __rmul__(self, other: MathType) -> _Matrix:
+    def __rmul__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
         return self.__mul__(other)
 
-    def __pow__(self, other: int) -> _Matrix:
-        if not self.dimension.square:
+    def __pow__(self, other: int) -> Matrix:
+        if not self.square:
             raise ValueError("Operation requires a square matrix")
-        if other == 0:
+        elif other == 0:
             return self.identity()
         elif other < 0:
             return self.invert() ** abs(other)
         result = self
-        for i in range(other - 1):
+        for _ in range(other - 1):
             result *= self
         return result
 
-    def __truediv__(self, other: MathType) -> _Matrix:
-        if isinstance(other, NumberType):
+    def __truediv__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
+        if isinstance(other, Union[int, float, complex]):
             return self.__mul__(1 / other)
         return self.__mul__(other.invert())
 
-    def __rtruediv__(self, other: MathType) -> _Matrix:
+    def __rtruediv__(self, other: Union[int, float, complex, Matrix]) -> Matrix:
         return self.invert().__mul__(other)
 
     def __invert__(self):
