@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "micromatrix"
-version = "1.0.0a1"
-description = "A small Python module which adds a generalized matrix class, supporting many operations with no external dependencies"
+version = "1.0.0"
+description = "A lightweight Python module which adds a generalized matrix class, supporting many matrix operations with no external dependencies"
 authors = ["h-janes <dev@hjanes.com>"]
 license = "MIT"
 readme = "README.md"
